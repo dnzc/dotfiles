@@ -1,0 +1,41 @@
+# i3status configuration file.
+# see "man i3status" for documentation.
+
+# It is important that this file is edited as UTF-8.
+# The following line should contain a sharp s:
+# ß
+# If the above line is not correctly displayed, fix your editor first!
+# https://i3wm.org/docs/i3status.html
+
+general {
+    colors = true
+    interval = 1
+	markup = "pango"
+}
+
+order += "cpu_usage"
+order += "memory"
+order += "battery 0"
+order += "tztime local"
+
+cpu_usage {
+	format = "<span color='#458588'> %usage</span>"
+}
+
+memory {
+	format = "<span color='#b16286'> %used</span>"
+}
+
+battery 0 {
+    format = "<span color='#d79921'>%status %percentage (%remaining)</span>"
+	status_chr = ""
+	status_full = ""
+	status_bat = ""
+	status_unk = ""
+	integer_battery_capacity = true
+}
+
+
+tztime local {
+	format = "%a %d %b %H:%M:%S"
+}
