@@ -1,0 +1,45 @@
+#!/usr/bin/sh
+
+info=$(i3-msg -t get_workspaces)
+
+monitor=$(echo "$info" | jq -r "map(.output) | .[0]")
+
+workspaces=$(echo $info | jq -r ".[] | select(.output==\"$monitor\") | .num")
+# convert to array
+ws=( $(echo "$workspaces") )
+
+direction=$1 # left, right
+
+current=$(echo $info | jq -r ".[] | select(.focused) | .num")
+# "https://stackoverflow.com/questions/28702020/find-smallest-missing-integer-in-an-array"
+
+next_ws=$(echo "${ws[@]}" | awk -v RS='\\s+' '{ a[$1] } END { for(i = 1; i in a; ++i); print i }')
+
+# if most extreme then create new, else move in direction
+if [[ $direction == "left" && "${ws[0]}" == "$current" || $direction == "right" && "${ws[-1]}" == "$current" ]]
+then
+    i3-msg workspace $next_ws
+else
+    # find index of current workspace
+    index=-1
+    echo "${ws[@]}"
+    echo $current
+    for i in "${!ws[@]}"
+    do
+        if [[ "${ws[$i]}" == "$current" ]]
+        then
+            index=$i
+            break
+        fi
+    done
+    # move in direction
+    if [[ $direction == "left" ]]
+    then
+        index=$index-1
+    elif [[ $direction == "right" ]]
+    then
+        index=$index+1
+    fi
+    # move to workspace
+    i3-msg workspace "${ws[$index]}"
+fi
