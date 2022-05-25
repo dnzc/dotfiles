@@ -13,7 +13,7 @@ set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:Iosevka 12
+font pango:Fira Code 12
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -27,19 +27,12 @@ font pango:Iosevka 12
 # exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
 # gaps
-gaps inner 20
+gaps inner 10
 gaps outer 0
 # smart_gaps on # only enable gaps on a workspace when there is at least one container
 
 # disable window titlebars
 for_window [class=".*"] border pixel 2
-
-# NetworkManager is the most popular way to manage wireless networks on Linux,
-# and nm-applet is a desktop environment-independent system tray GUI for it.
-exec --no-startup-id nm-applet
-
-# volume mixer applet
-exec --no-startup-id volumeicon -d hw:0 &
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
@@ -84,8 +77,8 @@ bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
-# split in horizontal orientation already default - if in vertical split, use $mod+e to toggle instead
-# bindsym $mod+d split h
+# split in horizontal orientation
+bindsym $mod+f split h
 
 # split in vertical orientation
 bindsym $mod+v split v
@@ -99,13 +92,13 @@ bindsym $mod+t layout tabbed
 bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
-bindsym $mod+f floating toggle
+bindsym $mod+Shift+space floating toggle
 
 # change focus between tiling / floating windows
 bindsym $mod+a focus mode_toggle
 
 # focus the parent container
-#bindsym $mod+a focus parent
+bindsym $mod+p focus parent
 
 # focus the child container
 #bindsym $mod+d focus child
@@ -122,6 +115,10 @@ set $ws7 "7"
 set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
+
+# switch to next/previous workspace
+bindsym $mod+Tab workspace next
+bindsym $mod+Shift+Tab workspace prev
 
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
@@ -213,14 +210,21 @@ bar {
 		active_workspace     $darkgray $darkgray $gray
 		urgent_workspace     $red $red $bg	
 	}
+        status_command i3status
 }
 
 # disable locking focus to mouse
 focus_follows_mouse no
 mouse_warping none
 
-# keyboard layout
-exec_always --no-startup-id setxkbmap gb -option caps:swapescape
+# system tray icons
+exec_always --no-startup-id "~/.config/i3/tray.sh"
+
+# touchpad gestures
+exec --no-startup-id libinput-gestures-setup start
+
+# keyboard remaps
+exec_always --no-startup-id /home/dnzc/.local/bin/remaps.sh
 
 # display wallpaper
 exec_always feh --bg-fill /home/dnzc/Pictures/fantasynature.jpg
@@ -229,13 +233,11 @@ exec_always feh --bg-fill /home/dnzc/Pictures/fantasynature.jpg
 exec picom -b
 
 # lockscreen keybind
-bindsym $mod+Escape exec betterlockscreen -l
+bindsym $mod+Escape exec betterlockscreen -l dim
 
 # firefox keybind
 bindsym $mod+w exec firefox
 
-# screenshots https://gist.github.com/dianjuar/ee774561a8bc02b077989bc17424a19f
-bindsym $mod+Shift+s exec --no-startup-id maim --select | xclip -selection clipboard -t image/png
-
-for_window [class="SFML"] floating enable
-for_window [class="GLFW-Application"] floating enable
+# screen brightness keybinds
+bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +5%
+bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 5%-

@@ -1,13 +1,23 @@
 call plug#begin()
 Plug 'jiangmiao/auto-pairs'
 Plug 'morhetz/gruvbox'
+Plug 'lervag/vimtex'
 call plug#end()
 
+" change cursor depending on mode
 let &t_SI = "\e[6 q"
 let &t_EI = "\e[2 q"
 
 " reset the cursor on start
 autocmd VimEnter * silent !echo -ne "\e[2 q"
+
+" vimtex setings
+let g:tex_flavor='latex'
+let g:vimtex_view_method='firefox'
+let g:vimtex_quickfix_mode=0
+" enable concealment
+let g:tex_conceal='abdmg'
+set conceallevel=1
 
 " color scheme
 colorscheme gruvbox
@@ -25,6 +35,3 @@ set expandtab
 
 " disable auto comment insertion on newline
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
-
-" auto compile + run
-autocmd filetype cpp nnoremap <F11> :!g++ % -o %:r -lsfml-graphics -lsfml-window -lsfml-system && ./%:r<CR>

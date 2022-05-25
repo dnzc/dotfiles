@@ -1,24 +1,24 @@
 window:
-  opacity: 0.8
+  opacity: 0.7
   padding:
     x: 5
     y: 5
 
 font:
   normal:
-    family: Iosevka
+    family: Fira Code
     style: Regular
 
   bold:
-    family: Iosevka
+    family: Fira Code
     style: Bold
 
   italic:
-    family: Iosevka
+    family: Fira Code
     style: Italic
 
   bold_italic:
-    family: Iosevka
+    family: Fira Code
     style: Bold Italic
 
   size: 12
@@ -51,3 +51,4 @@ colors:
     magenta: '0xd3869b'
     cyan:    '0x8ec07c'
     white:   '0xebdbb2'
+

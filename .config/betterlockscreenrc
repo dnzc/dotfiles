@@ -1,6 +1,6 @@
 # ~/.config/betterlockscreenrc
 
-# default options
+# options
 display_on=0
 span_image=false
 lock_timeout=300
@@ -13,11 +13,11 @@ wallpaper_cmd="feh --bg-fill"
 quiet=false
 # i3lockcolor_bin="i3lock-color" # Manually set command for i3lock-color
 
-# default theme
+# theme
 loginbox=00000066
 loginshadow=00000000
 locktext="Enter password..."
-font="Iosevka"
+font="Fira Code"
 ringcolor=ffffffff
 insidecolor=00000000
 separatorcolor=00000000
@@ -35,4 +35,3 @@ verifcolor=ffffffff
 wrongcolor=d23c3dff
 modifcolor=d23c3dff
 bgcolor=000000ff
-

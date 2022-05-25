@@ -1,6 +1,6 @@
 # dotfiles
 
-My linux config files, for aesthetic stuff. Gruvbox theme.
+Some of my linux config files, for aesthetic stuff. Gruvbox theme.
 
 ![screenshot.png](screenshot.png)
 
@@ -10,7 +10,7 @@ WM: i3-gaps
 
 Bar: i3status
 
-Font: Iosevka + Font-Awesome
+Font: Fira Code + Font-Awesome
 
 Terminal: Alacritty
 

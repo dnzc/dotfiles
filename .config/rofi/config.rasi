@@ -1,5 +1,5 @@
 * {
-    font: "Iosevka 12";
+    font: "Fira Code 12";
     foreground: #f8f8f2;
     background-color: #282828;
     active-background: #458588;
@@ -124,3 +124,4 @@ element-text, element-icon {
     background-color: inherit;
     text-color: inherit;
 }
+

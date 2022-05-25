@@ -9,7 +9,7 @@
 
 general {
     colors = true
-    interval = 1
+    interval = 5
 	markup = "pango"
 }
 
@@ -37,5 +37,6 @@ battery 0 {
 
 
 tztime local {
-	format = "%a %d %b %H:%M:%S"
+	format = "%a %d %b %H:%M "
 }
+
